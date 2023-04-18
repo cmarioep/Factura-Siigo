@@ -9,35 +9,28 @@ async function postInvoice() {
 
     const body = {
         "document": {
-            "id": 24446
+            // tipo de comprobante Factura electrónica de venta
+            "id": 38315
         },
         "date": "2020-02-04",
         "customer": {
-            "identification": "209048401",
+            "identification": "38876427",
             "branch_office": "0"
         },
-        "seller": 629,
+        // id Esperanza Bermudez
+        "seller": 40,
         "items": [
             {
-                "code": "Sku-1",
-                "description": "Sku-1",
+                "code": "02",
+                "description": "PAGO A AFP",
                 "quantity": 1,
-                "taxes": [
-                    {
-                        "id": 13156
-                    },
-                    {
-                        "id": 21479
-                    }
-                ],
                 "price": 847.45
             }
         ],
         "payments": [
             {
-                "id": 5638,
-                "value": 1000,
-                "due_date": "2022-05-08"
+                "id": 8604,
+                "value": 847.45
             }
         ]
     };

@@ -8,7 +8,7 @@ async function getCustomerIdByName(name) {
         let clienteEncontrado = false;
         for (let i = 0; i < newData.length; i++) {
             if (newData[i].name.includes(name)) {
-                console.log(newData[i].id);
+                console.log(newData[i].identification);
                 clienteEncontrado = true;
             }
         }
