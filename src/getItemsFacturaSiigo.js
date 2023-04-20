@@ -123,6 +123,8 @@ const agregarValorAdmon = (json, items) => {
 // Función principal para la lista de planillas de pago que extraer los valores correspondientes de los items
 const getItemsFacturaSiigo = (json) => {
 
+    const costumerId = json.content_res[0].NIT;
+
     const items = [];
 
     json.content_res.forEach(obj => {
@@ -134,7 +136,7 @@ const getItemsFacturaSiigo = (json) => {
 
     agregarValorAdmon(json, items);
 
-    return items;
+    return {costumerId, items};
 
 }
 
