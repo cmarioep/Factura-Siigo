@@ -1,5 +1,11 @@
-import { data } from './data/customersData.js';
+// import { data } from './data/customersData.js';
+import { getAllCostumers } from "./getAllCostumers.js";
+
+const data = await getAllCostumers();
+console.log(data);
+
 const jsonData = JSON.parse(data);
+console.log(jsonData);
 
 const newData = jsonData.results;
 

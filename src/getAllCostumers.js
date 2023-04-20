@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
-dotenv.config();
 
+dotenv.config();
 
 async function fetchCustomers() {
     const accessToken = process.env.ACCESS_TOKEN;
@@ -10,6 +10,7 @@ async function fetchCustomers() {
     const response = await fetch(url, {
         method: 'GET',
         headers: {
+            'Content-Type': 'application/json',
             'Authorization': accessToken
         }
     });
@@ -19,13 +20,12 @@ async function fetchCustomers() {
     return data;
 }
 
-async function getData() {
+export async function getAllCostumers() {
     try {
         const customers = await fetchCustomers();
-        console.log(customers);
+        return customers;
     } catch (error) {
         console.error(error);
     }
 }
-
-getData();
+await getAllCostumers();
