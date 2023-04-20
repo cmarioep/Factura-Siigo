@@ -15,7 +15,8 @@ async function fetchCustomers() {
         }
     });
 
-    const data = await response.json();
+
+    const data = await response.text();
 
     return data;
 }
@@ -28,4 +29,6 @@ export async function getAllCostumers() {
         console.error(error);
     }
 }
+
+
 await getAllCostumers();
