@@ -4,13 +4,13 @@ import { getAllCostumers } from "./getAllCostumers.js";
 
 async function getCustomerIdByName(name) {
 
-    const data = await getAllCostumers();
+    const customers = await getAllCostumers();
 
     try {
         let clienteEncontrado = false;
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].name.includes(name)) {
-                console.log(data[i].identification);
+        for (let i = 0; i < customers.length; i++) {
+            if (customers[i].name.includes(name)) {
+                console.log(customers[i].identification);
                 clienteEncontrado = true;
             }
         }

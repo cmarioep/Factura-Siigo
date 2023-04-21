@@ -1,11 +1,8 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
 
-const productsUrl = 'https://api.siigo.com/v1/products';
 
-
-async function fetchCustomers(url) {
-    console.log(url);
+async function fetchSiigoData(url) {
 
     const accessToken = process.env.ACCESS_TOKEN;
 
@@ -26,7 +23,7 @@ async function fetchCustomers(url) {
 
 export async function getSiigoData(url) {
     try {
-        const customers = await fetchCustomers(url);
+        const customers = await fetchSiigoData(url);
         return customers;
     } catch (error) {
         console.error(error);
@@ -34,4 +31,3 @@ export async function getSiigoData(url) {
 }
 
 
-console.log(await getSiigoData(productsUrl));
