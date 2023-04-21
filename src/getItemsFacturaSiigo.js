@@ -1,4 +1,3 @@
-
 const json = {
     "content_res": [
         {
@@ -87,7 +86,7 @@ const agregaritems = (tipo, obj, items) => {
     // Si no existe, se agrega un nuevo objeto con los items correspondientes.
     } else {
         items.push({
-            tipo: `Pago a ${subSistema}`,
+            tipo: `PAGO A ${subSistema}`,
             id: nit,
             nombre: nombre,
             valor: precio,

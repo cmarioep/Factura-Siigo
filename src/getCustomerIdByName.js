@@ -1,10 +1,11 @@
-// import { data } from './data/customersData.js';
-import { getAllCostumers } from "./getAllCostumers.js";
+import { getSiigoData } from "./getSiigoData.js";
 
 
 async function getCustomerIdByName(name) {
 
-    const customers = await getAllCostumers();
+    const customersUrl = 'https://api.siigo.com/v1/customers';
+
+    const customers = await getSiigoData(customersUrl);
 
     try {
         let clienteEncontrado = false;
