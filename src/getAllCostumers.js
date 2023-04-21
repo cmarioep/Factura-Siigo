@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
-
 dotenv.config();
+
 
 async function fetchCustomers() {
     const accessToken = process.env.ACCESS_TOKEN;
@@ -15,11 +15,12 @@ async function fetchCustomers() {
         }
     });
 
+    let data = await response.text();
+    data = JSON.parse(data);
 
-    const data = await response.text();
-
-    return data;
+    return data.results;
 }
+
 
 export async function getAllCostumers() {
     try {

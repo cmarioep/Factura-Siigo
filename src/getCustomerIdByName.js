@@ -1,20 +1,16 @@
 // import { data } from './data/customersData.js';
 import { getAllCostumers } from "./getAllCostumers.js";
 
-const data = await getAllCostumers();
-console.log(data);
-
-const jsonData = JSON.parse(data);
-console.log(jsonData);
-
-const newData = jsonData.results;
 
 async function getCustomerIdByName(name) {
+
+    const data = await getAllCostumers();
+
     try {
         let clienteEncontrado = false;
-        for (let i = 0; i < newData.length; i++) {
-            if (newData[i].name.includes(name)) {
-                console.log(newData[i].identification);
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].name.includes(name)) {
+                console.log(data[i].identification);
                 clienteEncontrado = true;
             }
         }
