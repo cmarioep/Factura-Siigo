@@ -1,10 +1,12 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
+// import * as dotenv from 'dotenv';
+// dotenv.config();
+import { getAuthToken } from './getAuthToken.js';
+
 
 
 async function fetchSiigoData(url) {
 
-    const accessToken = process.env.ACCESS_TOKEN;
+    const accessToken = await getAuthToken();
 
     const response = await fetch(url, {
         method: 'GET',
@@ -23,8 +25,8 @@ async function fetchSiigoData(url) {
 
 export async function getSiigoData(url) {
     try {
-        const customers = await fetchSiigoData(url);
-        return customers;
+        const data = await fetchSiigoData(url);
+        return data;
     } catch (error) {
         console.error(error);
     }

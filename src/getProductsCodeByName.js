@@ -24,7 +24,6 @@ async function getProductsCodeByName(name) {
     }
 }
 
-getProductsCodeByName('PAGO A EPS');
-
+await getProductsCodeByName('PAGO A EPS');
 
 

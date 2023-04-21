@@ -5,8 +5,17 @@ const body = {
     "access_key": "MGQwOTkxM2ItZDA0MC00ZjZlLTg5NTktMjZiMjZiNGY1MmNlOjA2Y1FmNkBPQ0g="
 }
 
+let authToken = null;
+let authTokenExpiresAt = null;
 
-async function getAuthToken() {
+
+export async function getAuthToken() {
+    if (authToken && authTokenExpiresAt > Date.now()) {
+        // Token válido en caché, retornarlo directamente
+        console.log('token válido en caché');
+        return authToken;
+    }
+
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -15,10 +24,14 @@ async function getAuthToken() {
         });
 
         const json = await response.json();
-        console.log(json.access_token);
+        authToken = json.access_token;
+        authTokenExpiresAt = Date.now() + json.expires_in * 1000;
+
+        return authToken;
+
     } catch (err) {
         console.error(err);
+        throw new Error('Error al obtener el token de autenticación');
     }
 }
 
-getAuthToken();
