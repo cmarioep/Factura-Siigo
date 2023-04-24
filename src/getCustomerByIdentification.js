@@ -1,7 +1,7 @@
 import { getSiigoData } from "./getSiigoData.js";
 
 
-async function getCustomerIdByName(name) {
+async function getCustomerByIdentification(identification) {
 
     const customersUrl = 'https://api.siigo.com/v1/customers';
 
@@ -10,13 +10,15 @@ async function getCustomerIdByName(name) {
     try {
         let clienteEncontrado = false;
         for (let i = 0; i < customers.length; i++) {
-            if (customers[i].name.includes(name)) {
-                console.log(customers[i].identification);
+            if (customers[i].identification.includes(identification)) {
                 clienteEncontrado = true;
+                console.log('Cliente existente');
+                return true;
             }
         }
         if (!clienteEncontrado) {
             console.log('No se encuentra el Cliente');
+            return false;
         }
     } catch (error) {
         console.error(error);
@@ -24,7 +26,7 @@ async function getCustomerIdByName(name) {
     }
 }
 
-await getCustomerIdByName('ONIX INC SAS');
+await getCustomerByIdentification(16751985);
 
 
 
