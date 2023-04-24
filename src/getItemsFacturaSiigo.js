@@ -1,3 +1,6 @@
+import { getProductsCodeByName } from "./getProductsCodeByName.js";
+
+
 const json = {
     "content_res": [
         {
@@ -73,33 +76,45 @@ const json = {
 
 
 // procesa el objeto y extrae las propiedades correspondientes al tipo de pago.
-const agregaritems = (tipo, obj, items) => {
+const agregaritems = async (tipo, obj, items) => {
     const nombre = obj[tipo];
     const precio = parseFloat(obj[`VALOR_${tipo}`].replace(".", "").replace(",", "."));
     const subSistema = obj[`SUB_SISTEMA_${tipo}`];
     const nit = obj[`NIT_${tipo}`];
     const valorActual = items.find(valor => valor.nombre === nombre);
 
-    // Si el tipo de pago ya existe en el arreglo de items, se actualiza el valor correspondiente.
-    if (valorActual) {
-        valorActual.valor += precio;
-    // Si no existe, se agrega un nuevo objeto con los items correspondientes.
-    } else {
-        items.push({
-            description: `PAGO A ${subSistema}`,
-            id: nit,
-            nombre: nombre,
-            valor: precio,
-            iva: 0,
-            totalIva: 0,
-            totalValor: precio
+    const itemType = `PAGO A ${subSistema}`;
+    const itemCode = await getProductsCodeByName(itemType);
 
-        });
+    try {
+
+        // Si el tipo de pago ya existe en el arreglo de items, se actualiza el valor correspondiente.
+        if (valorActual) {
+            valorActual.valor += precio;
+            // Si no existe, se agrega un nuevo objeto con los items correspondientes.
+        } else {
+
+            items.push({
+                code: itemCode,
+                description: itemType,
+                id: nit,
+                nombre: nombre,
+                valor: precio,
+                iva: 0,
+                totalIva: 0,
+                totalValor: precio
+
+            });
+        }
+    } catch (error) {
+        console.error('Error al Obtener el Producto', error);
+        return
     }
+
 }
 
 // calcula el valor de "ADMINISTRACION" de acuerdo al numero de usuarios por planilla
-const agregarValorAdmon = (json, items) => {
+const agregarValorAdmon = async (json, items) => {
     const valorPorUsuario = 1680.7;
     const iva = 0.19;
     const totalUsuarios = json.content_res.length
@@ -107,8 +122,12 @@ const agregarValorAdmon = (json, items) => {
     const ivaAdmon = valorAdmon * iva;
     const totalAdmon = valorAdmon + ivaAdmon;
 
+    const itemType = `ADMINISTRACION`;
+    const itemCode = await getProductsCodeByName(itemType);
+
     items.push({
-        description: `ADMINISTRACION`,
+        code: itemCode,
+        description: itemType,
         id: 901156656,
         nombre: 'Mercado y Pagos',
         valor: valorAdmon.toFixed(2),
@@ -120,24 +139,25 @@ const agregarValorAdmon = (json, items) => {
 }
 
 // Función principal para la lista de planillas de pago que extraer los valores correspondientes de los items
-const getItemsFacturaSiigo = (json) => {
+const getItemsFacturaSiigo = async (json) => {
 
     const costumerId = json.content_res[0].NIT;
 
     const items = [];
 
-    json.content_res.forEach(obj => {
-        agregaritems("EPS", obj, items);
-        agregaritems("ARL", obj, items);
-        agregaritems("AFP", obj, items);
-        agregaritems("CCF", obj, items);
-    });
+    for (const obj of json.content_res) {
+        await agregaritems("EPS", obj, items);
+        await agregaritems("ARL", obj, items);
+        await agregaritems("AFP", obj, items);
+        await agregaritems("CCF", obj, items);
+    }
 
-    agregarValorAdmon(json, items);
+    await agregarValorAdmon(json, items);
 
-    return {costumerId, items};
+    return { costumerId, items };
 
 }
 
 
-console.log(getItemsFacturaSiigo(json));
+
+console.log(await getItemsFacturaSiigo(json));

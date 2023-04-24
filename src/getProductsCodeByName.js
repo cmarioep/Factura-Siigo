@@ -1,18 +1,19 @@
 import { getSiigoData } from "./getSiigoData.js";
 
 
-async function getProductsCodeByName(name) {
+export async function getProductsCodeByName(name) {
 
     const productsUrl = 'https://api.siigo.com/v1/products';
 
     const products = await getSiigoData(productsUrl);
 
+
     try {
         let productFound = false;
         for (let i = 0; i < products.length; i++) {
             if (products[i].name.includes(name)) {
-                console.log(products[i].code);
                 productFound = true;
+                return (products[i].code);
             }
         }
         if (!productFound) {
@@ -24,6 +25,6 @@ async function getProductsCodeByName(name) {
     }
 }
 
-await getProductsCodeByName('PAGO A EPS');
+await getProductsCodeByName('PAGO A EPS')
 
 

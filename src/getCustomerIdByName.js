@@ -24,7 +24,7 @@ async function getCustomerIdByName(name) {
     }
 }
 
-getCustomerIdByName('MARTHA LUCIA');
+await getCustomerIdByName('ONIX INC SAS');
 
 
 
