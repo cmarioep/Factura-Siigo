@@ -1,7 +1,4 @@
-// import * as dotenv from 'dotenv';
-// dotenv.config();
 import { getAuthToken } from './getAuthToken.js';
-
 
 
 async function fetchSiigoData(url) {

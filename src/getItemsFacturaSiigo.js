@@ -86,7 +86,7 @@ const agregaritems = (tipo, obj, items) => {
     // Si no existe, se agrega un nuevo objeto con los items correspondientes.
     } else {
         items.push({
-            tipo: `PAGO A ${subSistema}`,
+            description: `PAGO A ${subSistema}`,
             id: nit,
             nombre: nombre,
             valor: precio,
@@ -108,7 +108,7 @@ const agregarValorAdmon = (json, items) => {
     const totalAdmon = valorAdmon + ivaAdmon;
 
     items.push({
-        tipo: `ADMINISTRACION`,
+        description: `ADMINISTRACION`,
         id: 901156656,
         nombre: 'Mercado y Pagos',
         valor: valorAdmon.toFixed(2),
