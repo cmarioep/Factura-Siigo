@@ -1,42 +1,32 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
+// import * as dotenv from 'dotenv';
+// dotenv.config();
+import { getAuthToken } from './getAuthToken.js';
+import { setCustomerData } from './setCustomerData.js';
+
+
+const rawCustomerData = `{
+    "NIT": 901526685,
+    "NOMBRE": "CONSULTOR NGS SAS",
+    "DIRECCION": "CALLE 37 # 16-25",
+    "CIUDAD": "Bogota D.C.",
+    "NOMBRE_REPRESENTANTE": "ALEX MAURICIO",
+    "APELLIDO_REPRESENTANTE": "BALAGUERA TRIANA"
+}`
+
+
+const extraData = {
+    person_type: 'Empresa',
+    id_type: 'NIT',
+    phoneNumber: 3006003344,
+    email: 'customer@contacto.com'
+}
+
 
 
 const url = 'https://api.siigo.com/v1/customers';
+const accessToken = await getAuthToken();
 
-
-const accessToken = process.env.ACCESS_TOKEN;
-
-
-const customerData = {
-    "person_type": "Person",
-    "id_type": "13",
-    "identification": "1115064121",
-    "name": [
-        "Marcos",
-        "Castillo"
-    ],
-    "address": {
-        "address": "Cra. 18 #79A - 42",
-        "city": {
-            "country_code": "Co",
-            "state_code": "11",
-            "city_code": "11001"
-        }
-    },
-    "phones": [
-        {
-            "number": "3006003344"
-        }
-    ],
-    "contacts": [
-        {
-            "first_name": "Marcos",
-            "last_name": "Castillo",
-            "email": "marcos.castillo@contacto.com"
-        }
-    ]
-}
+const customerData = setCustomerData(rawCustomerData, extraData);
 
 
 const requestOptions = {
@@ -46,7 +36,7 @@ const requestOptions = {
         'Authorization': accessToken
     },
     body: JSON.stringify(customerData)
-};
+}
 
 
 async function createNewCustomer() {

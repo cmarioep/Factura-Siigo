@@ -26,5 +26,5 @@ export const getCustomerByIdentification = async (identification) => {
     }
 }
 
-
+// console.log(await getCustomerByIdentification(901526685) )
 

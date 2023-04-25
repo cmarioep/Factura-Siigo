@@ -29,25 +29,7 @@ const setCustomerName = (person_type, name, lastName) => {
 }
 
 
-const rawCustomerData = `{
-    "NIT": 901526685,
-    "NOMBRE": "CONSULTOR NGS SAS",
-    "DIRECCION": "CALLE 37 # 16-25",
-    "CIUDAD": "Bogota D.C.",
-    "NOMBRE_REPRESENTANTE": "ALEX MAURICIO",
-    "APELLIDO_REPRESENTANTE": "BALAGUERA TRIANA"
-}`
-
-
-const extraData = {
-    person_type: 'Empresa',
-    id_type: 'NIT',
-    phoneNumber: 3006003344,
-    email: 'customer@contacto.com'
-}
-
-
-const getNewCustomerData = (rawCustomerData, { person_type, id_type, lastName= '', phoneNumber, email}) => {
+export const setCustomerData = (rawCustomerData, { person_type, id_type, lastName= '', phoneNumber, email}) => {
 
     const customerData = JSON.parse(rawCustomerData);
 
@@ -82,40 +64,40 @@ const getNewCustomerData = (rawCustomerData, { person_type, id_type, lastName= '
 }
 
 
-console.log(getNewCustomerData(rawCustomerData, extraData));
+// console.log(setCustomerData(rawCustomerData, extraData));
 
 
 
 
-const body = `{
-    "person_type": "Person", // Person or Company
-    "id_type": "13",
-    "identification": "28211179",
-    "name": [
-        "Marcos",
-        "Castillo"
-    ],
-    "address": {
-        "address": "Cra. 18 #79A - 42",
-        "city": {
-            "country_code": "Co",
-            "state_code": "11",
-            "city_code": "11001"
-        }
-    },
-    "phones": [
-        {
-            "number": "3006003344"
-        }
-    ],
-    "contacts": [
-        {
-            "first_name": "Marcos",
-            "last_name": "Castillo",
-            "email": "marcos.castillo@contacto.com"
-        }
-    ]
-}`
+// const body = `{
+//     "person_type": "Person", // Person or Company
+//     "id_type": "13",
+//     "identification": "28211179",
+//     "name": [
+//         "Marcos",
+//         "Castillo"
+//     ],
+//     "address": {
+//         "address": "Cra. 18 #79A - 42",
+//         "city": {
+//             "country_code": "Co",
+//             "state_code": "11",
+//             "city_code": "11001"
+//         }
+//     },
+//     "phones": [
+//         {
+//             "number": "3006003344"
+//         }
+//     ],
+//     "contacts": [
+//         {
+//             "first_name": "Marcos",
+//             "last_name": "Castillo",
+//             "email": "marcos.castillo@contacto.com"
+//         }
+//     ]
+// }`
 
 
 
