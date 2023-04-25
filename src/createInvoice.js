@@ -1,9 +1,17 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
+import { getCurrentDate } from './utils/getCurrentDate.js';
+import { getAuthToken } from './getAuthToken.js';
+import { getCustomerByIdentification } from './getCustomerByIdentification.js';
 
-async function postInvoice() {
+// import * as dotenv from 'dotenv';
+// dotenv.config();
 
-    const accessToken = process.env.ACCESS_TOKEN;
+
+
+async function postInvoice(customerId) {
+
+    const date = getCurrentDate();
+
+    const accessToken = await getAuthToken();
 
     const url = 'https://api.siigo.com/v1/invoices';
 
@@ -12,9 +20,9 @@ async function postInvoice() {
             // tipo de comprobante Factura electrónica de venta
             "id": 38315
         },
-        "date": "2020-02-04",
+        "date": `${date}`,
         "customer": {
-            "identification": "38876427",
+            "identification": `${customerId}`,
             "branch_office": "0"
         },
         // id Esperanza Bermudez
@@ -54,13 +62,25 @@ async function postInvoice() {
 }
 
 // Llamamos a la función postInvoice para enviar la solicitud POST
-async function createInvoice() {
-    try {
-        const result = await postInvoice();
-        console.log(result);
-    } catch (error) {
-        console.error(error);
+async function createInvoice(customerId) {
+
+    console.log('Cliente ID:', customerId);
+
+    const customerExists = await getCustomerByIdentification(customerId);
+
+    if (customerExists) {
+        try {
+            const result = await postInvoice(customerId);
+            console.log(result);
+        } catch (error) {
+            console.error(error);
+        }
+    } else {
+        console.log('No existe el cliente existe');
+        return;
     }
+
+
 }
 
-createInvoice();
+await createInvoice(16751985);

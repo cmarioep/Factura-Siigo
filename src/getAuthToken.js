@@ -12,6 +12,7 @@ let authTokenExpiresAt = null;
 export async function getAuthToken() {
     if (authToken && authTokenExpiresAt > Date.now()) {
         // Token válido en caché, retornarlo directamente
+        console.log('Token válido en caché');
         return authToken;
     }
 

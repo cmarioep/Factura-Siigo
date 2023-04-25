@@ -1,7 +1,7 @@
 import { getSiigoData } from "./getSiigoData.js";
 
 
-async function getCustomerByIdentification(identification) {
+export const getCustomerByIdentification = async (identification) => {
 
     const customersUrl = 'https://api.siigo.com/v1/customers';
 
@@ -25,8 +25,6 @@ async function getCustomerByIdentification(identification) {
         return null;
     }
 }
-
-await getCustomerByIdentification(16751985);
 
 
 
