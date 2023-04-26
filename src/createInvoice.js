@@ -2,10 +2,6 @@ import { getCurrentDate } from './utils/getCurrentDate.js';
 import { getAuthToken } from './getAuthToken.js';
 import { getCustomerByIdentification } from './getCustomerByIdentification.js';
 
-// import * as dotenv from 'dotenv';
-// dotenv.config();
-
-
 
 async function postInvoice(customerId) {
 
@@ -76,11 +72,11 @@ async function createInvoice(customerId) {
             console.error(error);
         }
     } else {
-        console.log('No existe el cliente existe');
+        console.log('No se encuentra el cliente');
         return;
     }
 
 
 }
 
-await createInvoice(16751985);
+await createInvoice(714523698);

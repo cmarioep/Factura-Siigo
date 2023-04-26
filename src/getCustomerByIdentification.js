@@ -17,7 +17,6 @@ export const getCustomerByIdentification = async (identification) => {
             }
         }
         if (!clienteEncontrado) {
-            console.log('No se encuentra el Cliente');
             return false;
         }
     } catch (error) {
