@@ -3,6 +3,7 @@ import { getAuthToken } from './getAuthToken.js';
 import { getCustomerByIdentification } from './getCustomerByIdentification.js';
 
 
+
 async function postInvoice(customerId) {
 
     const date = getCurrentDate();
@@ -37,7 +38,7 @@ async function postInvoice(customerId) {
                 "value": 847.45
             }
         ]
-    };
+    }
 
     try {
         const response = await fetch(url, {
