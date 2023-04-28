@@ -71,19 +71,14 @@ const data = {
             "SUB_SISTEMA": "EPS"
         },
         {
-            "NIT": 800140949,
-            "ADMINISTRADORA": "Cafesalud EPS",
-            "SUB_SISTEMA": "EPS"
-        },
-        {
             "NIT": 800251440,
             "ADMINISTRADORA": "E.P.S Sanitas",
             "SUB_SISTEMA": "EPS"
         },
         {
             "NIT": 860066942,
-            "ADMINISTRADORA": "Compensar Entidad Promotora de Salud",
-            "SUB_SISTEMA": "EPS"
+            "ADMINISTRADORA": "Caja de Compensación Familiar Compensar / Compensar Entidad Promotora de Salud",
+            "SUB_SISTEMA": "CCF/EPS"
         },
         {
             "NIT": 800088702,
@@ -92,8 +87,8 @@ const data = {
         },
         {
             "NIT": 890303093,
-            "ADMINISTRADORA": "Comfenalco Valle EPS",
-            "SUB_SISTEMA": "EPS"
+            "ADMINISTRADORA": "Comfenalco Valle Caja de Compensación - EPS",
+            "SUB_SISTEMA": "CCF/EPS"
         },
         {
             "NIT": 805000427,
@@ -131,18 +126,8 @@ const data = {
             "SUB_SISTEMA": "EPS"
         },
         {
-            "NIT": 900462447,
-            "ADMINISTRADORA": "Fondo de Solidaridad y Garantía Fosyga",
-            "SUB_SISTEMA": "EPS"
-        },
-        {
-            "NIT": 900462447,
-            "ADMINISTRADORA": "Fondo de Solidaridad y Garantía Fosyga",
-            "SUB_SISTEMA": "EPS"
-        },
-        {
             "NIT": 800140949,
-            "ADMINISTRADORA": "Cafesalud Entidad  Promotora de Salud S.A",
+            "ADMINISTRADORA": "Cafesalud Entidad Promotora de Salud S.A",
             "SUB_SISTEMA": "EPS"
         },
         {
@@ -153,11 +138,6 @@ const data = {
         {
             "NIT": 891856000,
             "ADMINISTRADORA": "Capresoca EPS",
-            "SUB_SISTEMA": "EPS"
-        },
-        {
-            "NIT": 830074184,
-            "ADMINISTRADORA": "Saludvida S.A. EPS Movilidad",
             "SUB_SISTEMA": "EPS"
         },
         {
@@ -241,49 +221,34 @@ const data = {
             "SUB_SISTEMA": "EPS"
         },
         {
-            "NIT": 900156264,
-            "ADMINISTRADORA": "Nueva EPS S.A. Movilidad",
-            "SUB_SISTEMA": "EPS"
-        },
-        {
             "NIT": 891800213,
             "ADMINISTRADORA": "Comfaboy EPS-CCF de Boyacá",
-            "SUB_SISTEMA": "EPS"
+            "SUB_SISTEMA": "CCF/EPS"
         },
         {
             "NIT": 891080005,
             "ADMINISTRADORA": "Comfacor EPS – CCF de Córdoba",
-            "SUB_SISTEMA": "EPS"
+            "SUB_SISTEMA": "CCF/EPS"
         },
         {
             "NIT": 891600091,
             "ADMINISTRADORA": "Comfachoco – CCF del Chocó",
-            "SUB_SISTEMA": "EPS"
+            "SUB_SISTEMA": "CCF/EPS"
         },
         {
             "NIT": 892115006,
             "ADMINISTRADORA": "Caja de Compensación Familiar de La Guajira",
-            "SUB_SISTEMA": "EPS"
+            "SUB_SISTEMA": "CCF/EPS"
         },
         {
             "NIT": 891280008,
             "ADMINISTRADORA": "Comfamiliar de Nariño EPS – CCF",
-            "SUB_SISTEMA": "EPS"
-        },
-        {
-            "NIT": 890500675,
-            "ADMINISTRADORA": "Comfaoriente EPS-S",
-            "SUB_SISTEMA": "EPS"
+            "SUB_SISTEMA": "CCF/EPS"
         },
         {
             "NIT": 860045904,
             "ADMINISTRADORA": "Comfacundi - CCF de Cundinamarca",
-            "SUB_SISTEMA": "EPS"
-        },
-        {
-            "NIT": 890102044,
-            "ADMINISTRADORA": "Cajacopi Atlántico  - CCF",
-            "SUB_SISTEMA": "EPS"
+            "SUB_SISTEMA": "CCF/EPS"
         },
         {
             "NIT": 800229739,
@@ -348,7 +313,7 @@ const data = {
         {
             "NIT": 890102044,
             "ADMINISTRADORA": "Caja de Compensación Familiar Cajacopi Atlántico",
-            "SUB_SISTEMA": "CCF"
+            "SUB_SISTEMA": "CCF/EPS"
         },
         {
             "NIT": 890102002,
@@ -371,11 +336,6 @@ const data = {
             "SUB_SISTEMA": "CCF"
         },
         {
-            "NIT": 891800213,
-            "ADMINISTRADORA": "Comfaboy",
-            "SUB_SISTEMA": "CCF"
-        },
-        {
             "NIT": 891190047,
             "ADMINISTRADORA": "Comfaca",
             "SUB_SISTEMA": "CCF"
@@ -391,11 +351,6 @@ const data = {
             "SUB_SISTEMA": "CCF"
         },
         {
-            "NIT": 891080005,
-            "ADMINISTRADORA": "Comfacor",
-            "SUB_SISTEMA": "CCF"
-        },
-        {
             "NIT": 860013570,
             "ADMINISTRADORA": "Cafam",
             "SUB_SISTEMA": "CCF"
@@ -403,31 +358,6 @@ const data = {
         {
             "NIT": 860007336,
             "ADMINISTRADORA": "Colsubsidio",
-            "SUB_SISTEMA": "CCF"
-        },
-        {
-            "NIT": 860066942,
-            "ADMINISTRADORA": "Caja de Compensación Familiar Compensar",
-            "SUB_SISTEMA": "CCF"
-        },
-        {
-            "NIT": 860045904,
-            "ADMINISTRADORA": "Comfacundi",
-            "SUB_SISTEMA": "CCF"
-        },
-        {
-            "NIT": 891600091,
-            "ADMINISTRADORA": "CCF del Chocó",
-            "SUB_SISTEMA": "CCF"
-        },
-        {
-            "NIT": 892115006,
-            "ADMINISTRADORA": "Caja de Compensación Familiar de La Guajira",
-            "SUB_SISTEMA": "CCF"
-        },
-        {
-            "NIT": 891180008,
-            "ADMINISTRADORA": "Comfamiliar del Huila",
             "SUB_SISTEMA": "CCF"
         },
         {
@@ -441,14 +371,9 @@ const data = {
             "SUB_SISTEMA": "CCF"
         },
         {
-            "NIT": 891280008,
-            "ADMINISTRADORA": "CCF de Nariño",
-            "SUB_SISTEMA": "CCF"
-        },
-        {
             "NIT": 890500675,
             "ADMINISTRADORA": "Caja de Compensación Familiar del Oriente",
-            "SUB_SISTEMA": "CCF"
+            "SUB_SISTEMA": "CCF/EPS"
         },
         {
             "NIT": 890500516,
@@ -472,8 +397,8 @@ const data = {
         },
         {
             "NIT": 892200015,
-            "ADMINISTRADORA": "Caja de Compensación Familiar del Sucre",
-            "SUB_SISTEMA": "CCF"
+            "ADMINISTRADORA": "Caja de Compensación Familiar del Sucre - EPS Familiar de Colombia SAS",
+            "SUB_SISTEMA": "CCF/EPS"
         },
         {
             "NIT": 890000381,
@@ -498,11 +423,6 @@ const data = {
         {
             "NIT": 890700148,
             "ADMINISTRADORA": "Comfenalco –Tolima",
-            "SUB_SISTEMA": "CCF"
-        },
-        {
-            "NIT": 890303093,
-            "ADMINISTRADORA": "Comfenalco Valle",
             "SUB_SISTEMA": "CCF"
         },
         {
@@ -553,17 +473,7 @@ const data = {
         {
             "NIT": 891180008,
             "ADMINISTRADORA": "Comfamiliar Huila EPS – CCF",
-            "SUB_SISTEMA": "EPS"
-        },
-        {
-            "NIT": 901097473,
-            "ADMINISTRADORA": "Medimás EPS S.A.S ",
-            "SUB_SISTEMA": "EPS"
-        },
-        {
-            "NIT": 892200015,
-            "ADMINISTRADORA": "EPS Familiar de Colombia SAS",
-            "SUB_SISTEMA": "EPS"
+            "SUB_SISTEMA": "CCF/EPS"
         },
         {
             "NIT": 890806490,
@@ -573,9 +483,26 @@ const data = {
     ],
     "session_res": true
 }
-const formattedData = data.content_res.map((item) => `${item.EPS} NIT: ${item.NIT_EPS}`);
-console.log(formattedData.length);
-console.log(formattedData);
+
+
+
+function findDuplicates(json) {
+    let unique = {}; // Creamos un objeto vacío para guardar los elementos únicos
+    let duplicates = []; // Creamos un array vacío para guardar los elementos duplicados
+
+    json.content_res.forEach(function (element) { // Recorremos el array de elementos del JSON
+        if (!unique[element.NIT]) { // Si el elemento no está en el objeto unique, lo agregamos
+            unique[element.NIT] = true;
+        } else { // Si el elemento ya está en el objeto unique, lo agregamos al array duplicates
+            duplicates.push(element);
+        }
+    });
+
+    return duplicates; // Devolvemos el array con los elementos duplicados
+}
+
+console.log(findDuplicates(data)); // Mostramos los elementos duplicados por consola
+
 
 
 function transformJson(originalJson) {
