@@ -27,7 +27,7 @@ async function postInvoice(customerId) {
         "items": [
             {
                 "code": "891280008",
-                "description": "alguna descripcion",
+                "description": "PAGO A AFP: Administradora Colombiana de Pensiones Colpensiones",
                 "quantity": 1,
                 "price": 847.45
             }
