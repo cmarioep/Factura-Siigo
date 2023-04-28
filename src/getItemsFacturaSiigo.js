@@ -83,32 +83,20 @@ const agregaritems = async (tipo, obj, items) => {
     const nit = obj[`NIT_${tipo}`];
     const valorActual = items.find(valor => valor.nombre === nombre);
 
-    const itemType = `PAGO A ${subSistema}`;
-    const itemCode = await getProductsCodeByName(itemType);
+    const itemDescription = `PAGO A ${subSistema}: ${nombre}`;
 
-    try {
+    // Si el tipo de pago ya existe en el arreglo de items, se actualiza el valor correspondiente.
+    if (valorActual) {
+        valorActual.valor += precio;
+        // Si no existe, se agrega un nuevo objeto con los items correspondientes.
+    } else {
 
-        // Si el tipo de pago ya existe en el arreglo de items, se actualiza el valor correspondiente.
-        if (valorActual) {
-            valorActual.valor += precio;
-            // Si no existe, se agrega un nuevo objeto con los items correspondientes.
-        } else {
-
-            items.push({
-                code: itemCode,
-                description: itemType,
-                id: nit,
-                nombre: nombre,
-                valor: precio,
-                iva: 0,
-                totalIva: 0,
-                totalValor: precio
-
-            });
-        }
-    } catch (error) {
-        console.error('Error al Obtener el Producto', error);
-        return
+        items.push({
+            nombre: nombre,
+            code: nit,
+            description: itemDescription,
+            valor: precio,
+        });
     }
 
 }

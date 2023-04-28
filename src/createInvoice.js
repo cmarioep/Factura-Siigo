@@ -26,8 +26,8 @@ async function postInvoice(customerId) {
         "seller": 40,
         "items": [
             {
-                "code": "02",
-                "description": "PAGO A AFP",
+                "code": "891280008",
+                "description": "alguna descripcion",
                 "quantity": 1,
                 "price": 847.45
             }
