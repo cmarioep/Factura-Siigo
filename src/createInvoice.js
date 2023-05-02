@@ -1,14 +1,17 @@
 import { getCurrentDate } from './utils/getCurrentDate.js';
 import { getAuthToken } from './getAuthToken.js';
 import { getCustomerByIdentification } from './getCustomerByIdentification.js';
+import { planillaData, getItemsFacturaSiigo } from './getItemsFacturaSiigo.js';
 
 
 
-async function postInvoice(customerId) {
-
-    const date = getCurrentDate();
+async function postInvoice(customer, items) {
 
     const accessToken = await getAuthToken();
+
+    const paymentVlaue = items.reduce((acc, item) => acc + item.price, 0);
+
+    const date = getCurrentDate();
 
     const url = 'https://api.siigo.com/v1/invoices';
 
@@ -19,23 +22,16 @@ async function postInvoice(customerId) {
         },
         "date": `${date}`,
         "customer": {
-            "identification": `${customerId}`,
+            "identification": `${customer}`,
             "branch_office": "0"
         },
         // id Esperanza Bermudez
         "seller": 40,
-        "items": [
-            {
-                "code": "891280008",
-                "description": "PAGO A AFP: Administradora Colombiana de Pensiones Colpensiones",
-                "quantity": 1,
-                "price": 847.45
-            }
-        ],
+        "items": items,
         "payments": [
             {
                 "id": 8604,
-                "value": 847.45
+                "value": paymentVlaue
             }
         ]
     }
@@ -59,7 +55,9 @@ async function postInvoice(customerId) {
 }
 
 // Llamamos a la función postInvoice para enviar la solicitud POST
-async function createInvoice(customerId) {
+async function createInvoice(planilla) {
+
+    const {customerId, formatedItems} = await getItemsFacturaSiigo(planilla);
 
     console.log('Cliente ID:', customerId);
 
@@ -67,7 +65,7 @@ async function createInvoice(customerId) {
 
     if (customerExists) {
         try {
-            const result = await postInvoice(customerId);
+            const result = await postInvoice(customerId, formatedItems);
             console.log(result);
         } catch (error) {
             console.error(error);
@@ -80,4 +78,4 @@ async function createInvoice(customerId) {
 
 }
 
-await createInvoice(38876427);
+await createInvoice(planillaData);

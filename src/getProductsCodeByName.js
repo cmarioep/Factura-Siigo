@@ -25,6 +25,6 @@ export async function getProductsCodeByName(name) {
     }
 }
 
-await getProductsCodeByName('PAGO A EPS')
+await getProductsCodeByName('ADMINISTRACION')
 
 

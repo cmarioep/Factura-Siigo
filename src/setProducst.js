@@ -1,4 +1,6 @@
+import { allProducts } from './allProducts.js';
 import { getAuthToken } from './getAuthToken.js';
+
 
 const data = {
     "content_res": [
@@ -390,6 +392,30 @@ const data = {
     "session_res": true
 }
 
+function findMissingNITs(data, allProducts) {
+    const missingNITs = [];
+
+    for (let i = 0; i < data.content_res.length; i++) {
+        const NIT = data.content_res[i].NIT;
+        let found = false;
+
+        for (let j = 0; j < allProducts.results.length; j++) {
+            const code = allProducts.results[j].code;
+            if (NIT.toString() === code) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            missingNITs.push(NIT);
+        }
+    }
+
+    return missingNITs;
+}
+
+console.log(findMissingNITs(data, allProducts));
 
 
 function transformJson(originalJson) {

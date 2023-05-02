@@ -1,12 +1,11 @@
-import { getProductsCodeByName } from "./getProductsCodeByName.js";
 
 
-const json = {
+export const planillaData = {
     "content_res": [
         {
             "NUMERO_PLANILLA": 1050857206,
             "EMPRESA": "ONIX INC SAS",
-            "NIT": 901584854,
+            "NIT": 900266167, // Dummy data, real data is 901584854
             "SUB_SISTEMA_EPS": "EPS",
             "NIT_EPS": 800251440,
             "EPS": "E.P.S Sanitas",
@@ -87,15 +86,16 @@ const agregaritems = async (tipo, obj, items) => {
 
     // Si el tipo de pago ya existe en el arreglo de items, se actualiza el valor correspondiente.
     if (valorActual) {
-        valorActual.valor += precio;
+        valorActual.price += precio;
         // Si no existe, se agrega un nuevo objeto con los items correspondientes.
     } else {
 
         items.push({
             nombre: nombre,
-            code: nit,
+            code: `${nit}`,
             description: itemDescription,
-            valor: precio,
+            quantity: 1,
+            price: precio,
         });
     }
 
@@ -104,32 +104,24 @@ const agregaritems = async (tipo, obj, items) => {
 // calcula el valor de "ADMINISTRACION" de acuerdo al numero de usuarios por planilla
 const agregarValorAdmon = async (json, items) => {
     const valorPorUsuario = 1680.7;
-    const iva = 0.19;
     const totalUsuarios = json.content_res.length
     const valorAdmon = totalUsuarios * valorPorUsuario;
-    const ivaAdmon = valorAdmon * iva;
-    const totalAdmon = valorAdmon + ivaAdmon;
 
-    const itemType = `ADMINISTRACION`;
-    const itemCode = await getProductsCodeByName(itemType);
 
     items.push({
-        code: itemCode,
-        description: itemType,
-        id: 901156656,
-        nombre: 'Mercado y Pagos',
-        valor: valorAdmon.toFixed(2),
-        iva,
-        totalIva: ivaAdmon.toFixed(2),
-        totalValor: totalAdmon.toFixed(2)
+        nombre: 'ADMINISTRACION',
+        code: '05',
+        description: `ADMINISTRACION: Mercado y Pagos NIT: 9013561116`,
+        quantity: 1,
+        price: valorAdmon.toFixed(2),
 
     });
 }
 
 // Función principal para la lista de planillas de pago que extraer los valores correspondientes de los items
-const getItemsFacturaSiigo = async (json) => {
+export const getItemsFacturaSiigo = async (json) => {
 
-    const costumerId = json.content_res[0].NIT;
+    const customerId = json.content_res[0].NIT;
 
     const items = [];
 
@@ -142,10 +134,15 @@ const getItemsFacturaSiigo = async (json) => {
 
     await agregarValorAdmon(json, items);
 
-    return { costumerId, items };
+    const formatedItems = items.map(obj => {
+        const { nombre, ...rest } = obj; // desestructuración para omitir "nombre"
+        return rest; // retorna un nuevo objeto sin la clave "nombre"
+    });
+
+    return { customerId, formatedItems };
 
 }
 
 
 
-console.log(await getItemsFacturaSiigo(json));
+// console.log(await getItemsFacturaSiigo(planillaData));
