@@ -113,7 +113,7 @@ const agregarValorAdmon = async (json, items) => {
         code: '05',
         description: `ADMINISTRACION: Mercado y Pagos NIT: 9013561116`,
         quantity: 1,
-        price: valorAdmon.toFixed(2),
+        price: parseFloat(valorAdmon.toFixed(2))
 
     });
 }
