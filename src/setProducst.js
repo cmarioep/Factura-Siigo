@@ -42,7 +42,7 @@ const data = {
         },
         {
             "NIT": 890904996,
-            "ADMINISTRADORA": "Empresas Públicas de Medellín DepartamentoMédico"
+            "ADMINISTRADORA": "Empresas Públicas de Medellín Departamento Médico"
         },
         {
             "NIT": 800112806,
@@ -330,7 +330,7 @@ const data = {
         },
         {
             "NIT": 890700148,
-            "ADMINISTRADORA": "Comfenalco –Tolima"
+            "ADMINISTRADORA": "Comfenalco – Tolima"
         },
         {
             "NIT": 890303093,
@@ -388,25 +388,7 @@ const data = {
     "session_res": true
 }
 
-console.log(data.content_res.length)
 
-
-function findDuplicates(json) {
-    let unique = {}; // Creamos un objeto vacío para guardar los elementos únicos
-    let duplicates = []; // Creamos un array vacío para guardar los elementos duplicados
-
-    json.content_res.forEach(function (element) { // Recorremos el array de elementos del JSON
-        if (!unique[element.NIT]) { // Si el elemento no está en el objeto unique, lo agregamos
-            unique[element.NIT] = true;
-        } else { // Si el elemento ya está en el objeto unique, lo agregamos al array duplicates
-            duplicates.push(element);
-        }
-    });
-
-    return duplicates; // Devolvemos el array con los elementos duplicados
-}
-
-console.log(findDuplicates(data)); // Mostramos los elementos duplicados por consola
 
 
 
@@ -418,8 +400,11 @@ function transformJson(originalJson) {
     originalJson.content_res.forEach((element) => {
         const newElement = {
             code: `${element.NIT}`,
-            name: `PAGO A ${element.SUB_SISTEMA}: ${element.ADMINISTRADORA}`,
-            description: `PAGO A ${element.SUB_SISTEMA}: ${element.ADMINISTRADORA} NIT: ${element.NIT}`
+            name: `${element.ADMINISTRADORA}`,
+            account_group: 1670,
+            type: "Service",
+            tax_classification: "Taxed",
+            tax_included: false,
         };
         transformedJson.content_res.push(newElement);
     });
@@ -428,4 +413,26 @@ function transformJson(originalJson) {
 }
 
 
-console.log(transformJson(data))
+console.log(transformJson(data));
+
+
+
+// console.log(data.content_res.length);
+
+
+// function findDuplicates(json) {
+//     let unique = {}; // Creamos un objeto vacío para guardar los elementos únicos
+//     let duplicates = []; // Creamos un array vacío para guardar los elementos duplicados
+
+//     json.content_res.forEach(function (element) { // Recorremos el array de elementos del JSON
+//         if (!unique[element.NIT]) { // Si el elemento no está en el objeto unique, lo agregamos
+//             unique[element.NIT] = true;
+//         } else { // Si el elemento ya está en el objeto unique, lo agregamos al array duplicates
+//             duplicates.push(element);
+//         }
+//     });
+
+//     return duplicates; // Devolvemos el array con los elementos duplicados
+// }
+
+// console.log(findDuplicates(data)); // Mostramos los elementos duplicados por consola
