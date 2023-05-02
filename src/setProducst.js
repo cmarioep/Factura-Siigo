@@ -1,3 +1,5 @@
+import { getAuthToken } from './getAuthToken.js';
+
 const data = {
     "content_res": [
         {
@@ -390,11 +392,9 @@ const data = {
 
 
 
-
-
 function transformJson(originalJson) {
     const transformedJson = {
-        content_res: []
+        products: []
     };
 
     originalJson.content_res.forEach((element) => {
@@ -406,15 +406,41 @@ function transformJson(originalJson) {
             tax_classification: "Taxed",
             tax_included: false,
         };
-        transformedJson.content_res.push(newElement);
+        transformedJson.products.push(newElement);
     });
 
     return transformedJson;
 }
 
 
-console.log(transformJson(data));
+// const productsData = transformJson(data);
+// console.log(productsData);
 
+
+async function postProducts() {
+
+    const productsData = transformJson(data);
+
+    const accessToken = await getAuthToken();
+
+    const url = 'https://api.siigo.com/v1/products';
+
+    for (const product of productsData.products) {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': accessToken
+            },
+            body: JSON.stringify(product)
+        });
+        const data = await response.json();
+        console.log(data);
+    }
+
+}
+
+postProducts();
 
 
 // console.log(data.content_res.length);
