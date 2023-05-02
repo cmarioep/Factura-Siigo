@@ -9,9 +9,8 @@ async function postInvoice(customer, items) {
 
     const accessToken = await getAuthToken();
 
-    const paymentVlaue = items.reduce((acc, item) => acc + item.price, 0);
+    const paymentVlaue = items.reduce((acc, item) => acc + item.total, 0);
 
-    console.log(items);
     console.log('***** Total Factura *******');
     console.log(paymentVlaue);
     console.log('************');

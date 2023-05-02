@@ -35,3 +35,4 @@ export async function getAuthToken() {
     }
 }
 
+// console.log(await getAuthToken());

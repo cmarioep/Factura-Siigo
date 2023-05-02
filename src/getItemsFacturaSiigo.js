@@ -87,6 +87,7 @@ const agregaritems = async (tipo, obj, items) => {
     // Si el tipo de pago ya existe en el arreglo de items, se actualiza el valor correspondiente.
     if (valorActual) {
         valorActual.price += precio;
+        valorActual.total += precio;
         // Si no existe, se agrega un nuevo objeto con los items correspondientes.
     } else {
 
@@ -96,6 +97,7 @@ const agregaritems = async (tipo, obj, items) => {
             description: itemDescription,
             quantity: 1,
             price: precio,
+            total: precio
         });
     }
 
@@ -103,9 +105,10 @@ const agregaritems = async (tipo, obj, items) => {
 
 // calcula el valor de "ADMINISTRACION" de acuerdo al numero de usuarios por planilla
 const agregarValorAdmon = async (json, items) => {
-    const valorPorUsuario = 1680.7;
+    const valorPorUsuario = 1681;
     const totalUsuarios = json.content_res.length
     const valorAdmon = totalUsuarios * valorPorUsuario;
+    const valorIva = valorAdmon * 0.19;
 
 
     items.push({
@@ -113,7 +116,17 @@ const agregarValorAdmon = async (json, items) => {
         code: '05',
         description: `ADMINISTRACION: Mercado y Pagos NIT: 9013561116`,
         quantity: 1,
-        price: parseFloat(valorAdmon.toFixed(2))
+        price: parseFloat(valorAdmon.toFixed(2)),
+        taxes: [
+            {
+                id: 808,
+                name: "IVA 19%",
+                type: "IVA",
+                percentage: 19,
+                value: parseFloat(valorIva.toFixed(2))
+            }
+        ],
+        total: valorAdmon + valorIva
 
     });
 }
@@ -145,4 +158,4 @@ export const getItemsFacturaSiigo = async (json) => {
 
 
 
-// console.log(await getItemsFacturaSiigo(planillaData));
+console.log(await getItemsFacturaSiigo(planillaData));
