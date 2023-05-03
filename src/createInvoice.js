@@ -11,10 +11,6 @@ async function postInvoice(customer, items) {
 
     const paymentVlaue = items.reduce((acc, item) => acc + item.total, 0);
 
-    console.log('***** Total Factura *******');
-    console.log(paymentVlaue);
-    console.log('************');
-
     const date = getCurrentDate();
 
     const url = 'https://api.siigo.com/v1/invoices';

@@ -115,8 +115,8 @@ const agregarValorAdmon = async (json, items) => {
         nombre: 'ADMINISTRACION',
         code: '05',
         description: `ADMINISTRACION: Mercado y Pagos NIT: 9013561116`,
-        quantity: 1,
-        price: parseFloat(valorAdmon.toFixed(2)),
+        quantity: totalUsuarios,
+        price: parseFloat(valorPorUsuario.toFixed(2)),
         taxes: [
             {
                 id: 808,
@@ -158,4 +158,4 @@ export const getItemsFacturaSiigo = async (json) => {
 
 
 
-console.log(await getItemsFacturaSiigo(planillaData));
+// console.log(await getItemsFacturaSiigo(planillaData));
