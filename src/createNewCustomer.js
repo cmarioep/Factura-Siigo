@@ -5,12 +5,20 @@ import { setCustomerData } from './setCustomerData.js';
 
 
 const rawCustomerData = `{
-    "NIT": 901526685,
-    "NOMBRE": "CONSULTOR NGS SAS",
-    "DIRECCION": "CALLE 37 # 16-25",
-    "CIUDAD": "Bogota D.C.",
-    "NOMBRE_REPRESENTANTE": "ALEX MAURICIO",
-    "APELLIDO_REPRESENTANTE": "BALAGUERA TRIANA"
+    "content_res": {
+        "result": true,
+        "content": [
+            {
+                "NIT": 901584854,
+                "EMPRESA": "ONIX INC SAS",
+                "DIRECCION": "CL 6 #13 - 20",
+                "CIUDAD": "Buga",
+                "NOMBRE_REPRESENTANTE": "ESMERALDA",
+                "APELLIDO_REPRESENTANTE": "CORREA"
+            }
+        ]
+    },
+    "session_res": true
 }`
 
 
@@ -23,30 +31,49 @@ const extraData = {
 
 
 
-const url = 'https://api.siigo.com/v1/customers';
-const accessToken = await getAuthToken();
-
-const customerData = setCustomerData(rawCustomerData, extraData);
 
 
-const requestOptions = {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': accessToken
-    },
-    body: JSON.stringify(customerData)
-}
 
 
-async function createNewCustomer() {
+async function postNewCustomer(customerData) {
+
+    const accessToken = await getAuthToken();
+
+    const url = 'https://api.siigo.com/v1/customers';
+
     try {
-        const response = await fetch(url, requestOptions);
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': accessToken
+            },
+            body: JSON.stringify(customerData)
+        });
+
         const data = await response.json();
         console.log(data);
+        return data;
+
     } catch (error) {
         console.error(error);
     }
 }
 
-createNewCustomer();
+
+
+
+async function createNewCustomer(rawCustomerData, extraCustomerData) {
+
+    rawCustomerData = JSON.text(rawCustomerData);
+
+    console.log(rawCustomerData)
+    // const customerData = rawCustomerData.content_res.content[0];
+
+    // const fullCustomerData = setCustomerData(customerData, extraData);
+
+    // console.log(fullCustomerData);
+
+}
+
+createNewCustomer(rawCustomerData, extraData);

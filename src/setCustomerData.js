@@ -32,6 +32,7 @@ const setCustomerName = (person_type, name, lastName) => {
 export const setCustomerData = (rawCustomerData, { person_type, id_type, lastName= '', phoneNumber, email}) => {
 
     const customerData = JSON.parse(rawCustomerData);
+    // const customerData = rawCustomerData;
 
     const { NIT, NOMBRE, DIRECCION, NOMBRE_REPRESENTANTE, APELLIDO_REPRESENTANTE } = customerData;
 
@@ -63,41 +64,6 @@ export const setCustomerData = (rawCustomerData, { person_type, id_type, lastNam
     }
 }
 
-
-// console.log(setCustomerData(rawCustomerData, extraData));
-
-
-
-
-// const body = `{
-//     "person_type": "Person", // Person or Company
-//     "id_type": "13",
-//     "identification": "28211179",
-//     "name": [
-//         "Marcos",
-//         "Castillo"
-//     ],
-//     "address": {
-//         "address": "Cra. 18 #79A - 42",
-//         "city": {
-//             "country_code": "Co",
-//             "state_code": "11",
-//             "city_code": "11001"
-//         }
-//     },
-//     "phones": [
-//         {
-//             "number": "3006003344"
-//         }
-//     ],
-//     "contacts": [
-//         {
-//             "first_name": "Marcos",
-//             "last_name": "Castillo",
-//             "email": "marcos.castillo@contacto.com"
-//         }
-//     ]
-// }`
 
 
 
