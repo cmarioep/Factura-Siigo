@@ -149,7 +149,7 @@ const data = {
             "ADMINISTRADORA": "Asociación Mutual Ser Empresa Solidaría de Salud ESS"
         },
         {
-            "NIT": 814000337,
+            "NIT": 901021565, //se corrigio antes era 814000337
             "ADMINISTRADORA": "Asociación Mutual Empresa Solidaria de Salud de Nariño E.S.S. Emssanar E.S.S."
         },
         {
@@ -488,3 +488,5 @@ postProducts();
 // }
 
 // console.log(findDuplicates(data)); // Mostramos los elementos duplicados por consola
+
+
