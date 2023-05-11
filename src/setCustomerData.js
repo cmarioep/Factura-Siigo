@@ -29,10 +29,23 @@ const setCustomerName = (person_type, name, lastName) => {
     }
 }
 
+const formatCityCode = (cityCode) => {
+
+    const code = cityCode.toString();
+
+    if (code.length < 5) {
+        const formatedCode = "0" + code;
+        return formatedCode;
+    }
+
+    return code;
+}
+
+
 
 export const setCustomerData = (rawCustomerData, extraCustomerData) => {
 
-    const { NIT, NOMBRE, DIRECCION, NOMBRE_REPRESENTANTE, APELLIDO_REPRESENTANTE } = rawCustomerData;
+    const { NIT, NOMBRE, DIRECCION, CODIGO_CIUDAD, CODIGO_DEPTO, NOMBRE_REPRESENTANTE, APELLIDO_REPRESENTANTE } = rawCustomerData;
     const { person_type, id_type, lastName = '', phoneNumber, email } = extraCustomerData;
 
     return {
@@ -44,8 +57,8 @@ export const setCustomerData = (rawCustomerData, extraCustomerData) => {
             address: `${DIRECCION}`,
             city: {
                 country_code: "Co",
-                state_code: "11",
-                city_code: "11001"
+                state_code: `${CODIGO_DEPTO}`,
+                city_code: formatCityCode(CODIGO_CIUDAD)
             }
         },
         phones: [
