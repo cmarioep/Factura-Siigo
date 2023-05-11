@@ -6,17 +6,20 @@ import { setCustomerData } from './setCustomerData.js';
 
 const rawCustomerData = `{
     "content_res": {
-        "result": true,
-        "content": [
-            {
-                "NIT": 901584854,
-                "NOMBRE": "ONIX INC SAS",
-                "DIRECCION": "CL 6 #13 - 20",
-                "CIUDAD": "Buga",
-                "NOMBRE_REPRESENTANTE": "ESMERALDA",
-                "APELLIDO_REPRESENTANTE": "CORREA"
-            }
-        ]
+    "result": true,
+    "content": [
+        {
+        "NIT": 901526685,
+        "NOMBRE": "CONSULTOR NGS SAS",
+        "DIRECCION": "CALLE 37 # 16-25",
+        "CIUDAD": "Bogota D.C.",
+        "CODIGO_CIUDAD": 11001,
+        "NOMBRE_DEPTO": "Bogota D.C",
+        "CODIGO_DEPTO": "11",
+        "NOMBRE_REPRESENTANTE": "ALEX MAURICIO",
+        "APELLIDO_REPRESENTANTE": "BALAGUERA TRIANA"
+        }
+    ]
     },
     "session_res": true
 }`
