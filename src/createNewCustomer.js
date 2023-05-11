@@ -22,13 +22,14 @@ const rawCustomerData = `{
 }`
 
 
-
 const extraData = {
     person_type: 'Empresa',
     id_type: 'NIT',
     phoneNumber: 3006003344,
     email: 'customer@contacto.com'
 }
+
+
 
 
 
@@ -65,9 +66,12 @@ async function createNewCustomer(rawCustomerData, extraCustomerData) {
     rawCustomerData = JSON.parse(rawCustomerData);
     rawCustomerData = rawCustomerData.content_res.content[0]
 
-    const customerData = setCustomerData(rawCustomerData, extraCustomerData);
+    const customerData = setCustomerData(rawCustomerData, extraCustomerData)
 
+    console.log(customerData);
     return customerData;
+
+
 }
 
 createNewCustomer(rawCustomerData, extraData);
