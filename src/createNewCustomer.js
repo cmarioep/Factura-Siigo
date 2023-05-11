@@ -10,7 +10,7 @@ const rawCustomerData = `{
         "content": [
             {
                 "NIT": 901584854,
-                "EMPRESA": "ONIX INC SAS",
+                "NOMBRE": "ONIX INC SAS",
                 "DIRECCION": "CL 6 #13 - 20",
                 "CIUDAD": "Buga",
                 "NOMBRE_REPRESENTANTE": "ESMERALDA",
@@ -22,16 +22,13 @@ const rawCustomerData = `{
 }`
 
 
+
 const extraData = {
     person_type: 'Empresa',
     id_type: 'NIT',
     phoneNumber: 3006003344,
     email: 'customer@contacto.com'
 }
-
-
-
-
 
 
 
@@ -65,15 +62,12 @@ async function postNewCustomer(customerData) {
 
 async function createNewCustomer(rawCustomerData, extraCustomerData) {
 
-    rawCustomerData = JSON.text(rawCustomerData);
+    rawCustomerData = JSON.parse(rawCustomerData);
+    rawCustomerData = rawCustomerData.content_res.content[0]
 
-    console.log(rawCustomerData)
-    // const customerData = rawCustomerData.content_res.content[0];
+    const customerData = setCustomerData(rawCustomerData, extraCustomerData);
 
-    // const fullCustomerData = setCustomerData(customerData, extraData);
-
-    // console.log(fullCustomerData);
-
+    return customerData;
 }
 
 createNewCustomer(rawCustomerData, extraData);

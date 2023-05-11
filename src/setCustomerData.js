@@ -14,6 +14,7 @@ const customersType = {
 
 const setCustomerName = (person_type, name, lastName) => {
 
+
     const customerName = [];
 
     if (person_type === 'Persona') {
@@ -29,12 +30,10 @@ const setCustomerName = (person_type, name, lastName) => {
 }
 
 
-export const setCustomerData = (rawCustomerData, { person_type, id_type, lastName= '', phoneNumber, email}) => {
+export const setCustomerData = (rawCustomerData, extraCustomerData) => {
 
-    const customerData = JSON.parse(rawCustomerData);
-    // const customerData = rawCustomerData;
-
-    const { NIT, NOMBRE, DIRECCION, NOMBRE_REPRESENTANTE, APELLIDO_REPRESENTANTE } = customerData;
+    const { NIT, NOMBRE, DIRECCION, NOMBRE_REPRESENTANTE, APELLIDO_REPRESENTANTE } = rawCustomerData;
+    const { person_type, id_type, lastName = '', phoneNumber, email } = extraCustomerData;
 
     return {
         person_type: customersType[person_type],
