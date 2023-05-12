@@ -4,6 +4,57 @@ import { getCustomerByIdentification } from './getCustomerByIdentification.js';
 import { planillaData, getItemsFacturaSiigo } from './getItemsFacturaSiigo.js';
 
 
+const setInvoiceBody = (isCustomerRegistered, customer, items) => {
+
+    if (isCustomerRegistered) {
+        const body = {
+            "document": {
+                // tipo de comprobante Factura electrónica de venta
+                "id": 38315
+            },
+            "date": `${date}`,
+            "customer": {
+                "identification": `${customer}`,
+                "branch_office": "0"
+            },
+            // id Esperanza Bermudez
+            "seller": 40,
+            "items": items,
+            "payments": [
+                {
+                    "id": 8604,
+                    "value": paymentVlaue
+                }
+            ]
+        }
+
+        return body;
+
+
+    } else {
+        const body = {
+            "document": {
+                // tipo de comprobante Factura electrónica de venta
+                "id": 38315
+            },
+            "date": `${date}`,
+            // id Esperanza Bermudez
+            "seller": 40,
+            "items": items,
+            "payments": [
+                {
+                    "id": 8604,
+                    "value": paymentVlaue
+                }
+            ]
+        }
+
+        return body;
+    }
+
+
+}
+
 
 async function postInvoice(customer, items) {
 
@@ -57,13 +108,13 @@ async function postInvoice(customer, items) {
 // Llamamos a la función postInvoice para enviar la solicitud POST
 async function createInvoice(planilla) {
 
-    const {customerId, formatedItems} = await getItemsFacturaSiigo(planilla);
+    const { customerId, formatedItems } = await getItemsFacturaSiigo(planilla);
 
     console.log('Cliente ID:', customerId);
 
-    const customerExists = await getCustomerByIdentification(customerId);
+    const isCustomerRegistered = await getCustomerByIdentification(customerId);
 
-    if (customerExists) {
+    if (isCustomerRegistered) {
         try {
             const result = await postInvoice(customerId, formatedItems);
             console.log(result);
@@ -74,7 +125,6 @@ async function createInvoice(planilla) {
         console.log('No se encuentra el cliente');
         return;
     }
-
 
 }
 

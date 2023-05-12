@@ -9,7 +9,7 @@ const rawCustomerData = `{
     "result": true,
     "content": [
         {
-        "NIT": 901526685,
+        "NIT": 1115064121,
         "NOMBRE": "CONSULTOR NGS SAS",
         "DIRECCION": "CALLE 37 # 16-25",
         "CIUDAD": "Bogota D.C.",

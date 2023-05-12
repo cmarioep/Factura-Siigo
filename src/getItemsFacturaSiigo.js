@@ -5,7 +5,7 @@ export const planillaData = {
         {
             "NUMERO_PLANILLA": 1050857206,
             "EMPRESA": "ONIX INC SAS",
-            "NIT": 900266167, // Dummy data, real data is 901584854
+            "NIT": 1115064121, // Dummy data, real data is 901584854
             "SUB_SISTEMA_EPS": "EPS",
             "NIT_EPS": 800251440,
             "EPS": "E.P.S Sanitas",
