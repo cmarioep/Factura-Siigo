@@ -6,24 +6,17 @@ const getIDType = (id_type) => {
 }
 
 
-const customersType = {
-    Persona: 'Person',
-    Empresa: 'Company'
-}
-
-
 const setCustomerName = (person_type, name, lastName) => {
-
 
     const customerName = [];
 
-    if (person_type === 'Persona') {
+    if (person_type === 'Person') {
         customerName.push(name);
         customerName.push(lastName);
         return customerName;
     }
 
-    if (person_type === 'Empresa') {
+    if (person_type === 'Company') {
         customerName.push(name);
         return customerName;
     }
@@ -43,15 +36,18 @@ const formatCityCode = (cityCode) => {
 
 
 
-export const setCustomerData = (rawCustomerData, extraCustomerData) => {
+export const setCustomerData = (rawCustomerData, typeOfCustomer, identificationType = 'NIT' ) => {
 
-    const { NIT, NOMBRE, DIRECCION, CODIGO_CIUDAD, CODIGO_DEPTO, NOMBRE_REPRESENTANTE, APELLIDO_REPRESENTANTE } = rawCustomerData;
-    const { person_type, id_type, lastName = '', phoneNumber, email } = extraCustomerData;
+    const { NOMBRE, IDENTIFICACION, DIRECCION, CODIGO_CIUDAD, CODIGO_DEPTO, NOMBRE_REPRESENTANTE, APELLIDO_REPRESENTANTE, EMAIL, TELEFONO } = rawCustomerData;
+
+    const person_type= typeOfCustomer;
+    const id_type= identificationType;
+    const lastName = '';
 
     return {
-        person_type: customersType[person_type],
+        person_type: typeOfCustomer,
         id_type: getIDType(id_type),
-        identification: `${NIT}`,
+        identification: `${IDENTIFICACION}`,
         name: setCustomerName(person_type, NOMBRE, lastName),
         address: {
             address: `${DIRECCION}`,
@@ -63,14 +59,14 @@ export const setCustomerData = (rawCustomerData, extraCustomerData) => {
         },
         phones: [
             {
-                number: `${phoneNumber}`
+                number: `${TELEFONO}`
             }
         ],
         contacts: [
             {
                 first_name: `${NOMBRE_REPRESENTANTE}`,
                 last_name: `${APELLIDO_REPRESENTANTE}`,
-                email: `${email}`
+                email: `${EMAIL}`
             }
         ]
     }

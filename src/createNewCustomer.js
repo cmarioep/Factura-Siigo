@@ -9,30 +9,22 @@ const rawCustomerData = `{
     "result": true,
     "content": [
         {
-        "NIT": 1115064121,
         "NOMBRE": "CONSULTOR NGS SAS",
+        "IDENTIFICACION": 1115064121,
         "DIRECCION": "CALLE 37 # 16-25",
         "CIUDAD": "Bogota D.C.",
         "CODIGO_CIUDAD": 11001,
         "NOMBRE_DEPTO": "Bogota D.C",
         "CODIGO_DEPTO": "11",
         "NOMBRE_REPRESENTANTE": "ALEX MAURICIO",
-        "APELLIDO_REPRESENTANTE": "BALAGUERA TRIANA"
+        "APELLIDO_REPRESENTANTE": "BALAGUERA TRIANA",
+        "EMAIL": "consultor@ngs.com",
+        "TELEFONO": "3006003344"
         }
     ]
     },
     "session_res": true
 }`
-
-
-const extraData = {
-    person_type: 'Empresa',
-    id_type: 'NIT',
-    phoneNumber: 3006003344,
-    email: 'customer@contacto.com'
-}
-
-
 
 
 
@@ -64,17 +56,21 @@ async function postNewCustomer(customerData) {
 
 
 
-async function createNewCustomer(rawCustomerData, extraCustomerData) {
+async function createNewCustomer(rawCustomerData, typeOfCustomer) {
 
     rawCustomerData = JSON.parse(rawCustomerData);
     rawCustomerData = rawCustomerData.content_res.content[0]
 
-    const customerData = setCustomerData(rawCustomerData, extraCustomerData)
+    const customerData = setCustomerData(rawCustomerData, typeOfCustomer)
 
     console.log(customerData);
     return customerData;
 
-
 }
 
-createNewCustomer(rawCustomerData, extraData);
+// const customersTypes = {
+//     Persona: 'Person',
+//     Empresa: 'Company'
+// }
+
+createNewCustomer(rawCustomerData, 'Company');
