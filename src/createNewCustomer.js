@@ -10,7 +10,7 @@ const rawCustomerData = `{
     "content": [
         {
         "NOMBRE": "CONSULTOR NGS SAS",
-        "TIPO_IDENTIFICACION": "CC",
+        "TIPO_IDENTIFICACION": "NI",
         "IDENTIFICACION": 1115064121,
         "DIRECCION": "CALLE 37 # 16-25",
         "CIUDAD": "Bogota D.C.",
@@ -57,12 +57,12 @@ async function postNewCustomer(customerData) {
 
 
 
-async function createNewCustomer(rawCustomerData, typeOfCustomer) {
+async function createNewCustomer(rawCustomerData) {
 
     rawCustomerData = JSON.parse(rawCustomerData);
     rawCustomerData = rawCustomerData.content_res.content[0]
 
-    const customerData = setCustomerData(rawCustomerData, typeOfCustomer)
+    const customerData = setCustomerData(rawCustomerData)
 
     console.log(customerData);
     return customerData;
@@ -70,4 +70,4 @@ async function createNewCustomer(rawCustomerData, typeOfCustomer) {
 }
 
 
-createNewCustomer(rawCustomerData, 'Company');
+createNewCustomer(rawCustomerData,);
