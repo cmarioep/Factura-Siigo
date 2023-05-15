@@ -1,26 +1,40 @@
 import { customersIdTypes } from './utils/paymentsTypes.js';
 
 
-const getIDType = (id_type) => {
-    return customersIdTypes[id_type];
+const getIDType = (identificationType) => {
+    return customersIdTypes[identificationType];
 }
 
 
-const setCustomerName = (person_type, name, lastName) => {
+const setPersonType = (identificationType) => {
+
+    if (identificationType === 'NI') {
+        return 'Company';
+    } else {
+        return 'Person';
+    }
+}
+
+
+const setCustomerName = (identificationType, name, lastName) => {
+
 
     const customerName = [];
 
-    if (person_type === 'Person') {
+    const personType = setPersonType(identificationType);
+
+    if (personType === 'Person') {
         customerName.push(name);
         customerName.push(lastName);
         return customerName;
     }
 
-    if (person_type === 'Company') {
+    if (personType === 'Company') {
         customerName.push(name);
         return customerName;
     }
 }
+
 
 const formatCityCode = (cityCode) => {
 
@@ -36,19 +50,16 @@ const formatCityCode = (cityCode) => {
 
 
 
-export const setCustomerData = (rawCustomerData, typeOfCustomer, identificationType = 'NIT' ) => {
+export const setCustomerData = (rawCustomerData) => {
 
-    const { NOMBRE, IDENTIFICACION, DIRECCION, CODIGO_CIUDAD, CODIGO_DEPTO, NOMBRE_REPRESENTANTE, APELLIDO_REPRESENTANTE, EMAIL, TELEFONO } = rawCustomerData;
+    const { NOMBRE, TIPO_IDENTIFICACION, IDENTIFICACION, DIRECCION, CODIGO_CIUDAD, CODIGO_DEPTO, NOMBRE_REPRESENTANTE, APELLIDO_REPRESENTANTE, EMAIL, TELEFONO } = rawCustomerData;
 
-    const person_type= typeOfCustomer;
-    const id_type= identificationType;
-    const lastName = '';
 
     return {
-        person_type: typeOfCustomer,
-        id_type: getIDType(id_type),
+        person_type: setPersonType(TIPO_IDENTIFICACION),
+        id_type: getIDType(TIPO_IDENTIFICACION),
         identification: `${IDENTIFICACION}`,
-        name: setCustomerName(person_type, NOMBRE, lastName),
+        name: setCustomerName(TIPO_IDENTIFICACION, NOMBRE, APELLIDO_REPRESENTANTE),
         address: {
             address: `${DIRECCION}`,
             city: {

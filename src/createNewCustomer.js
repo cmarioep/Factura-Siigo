@@ -10,6 +10,7 @@ const rawCustomerData = `{
     "content": [
         {
         "NOMBRE": "CONSULTOR NGS SAS",
+        "TIPO_IDENTIFICACION": "CC",
         "IDENTIFICACION": 1115064121,
         "DIRECCION": "CALLE 37 # 16-25",
         "CIUDAD": "Bogota D.C.",
@@ -68,9 +69,5 @@ async function createNewCustomer(rawCustomerData, typeOfCustomer) {
 
 }
 
-// const customersTypes = {
-//     Persona: 'Person',
-//     Empresa: 'Company'
-// }
 
 createNewCustomer(rawCustomerData, 'Company');

@@ -5,15 +5,15 @@ export const payments = {
 }
 
 export const customersIdTypes = {
-    'Cédula de ciudadanía': '13',
-    'NIT': '31',
-    'Cédula de extranjería': '22',
+    'CC': '13', // Cédula de ciudadanía
+    'NI': '31', // NIT
+    'CE': '22', // Cédula de extranjería
     'Documento de identificación extranjero': '42',
     'NIT de otro país': '50',
     'No obligado a registrarse en el RUT PN': 'R-00-PN',
     'NUIP': '91',
-    'Pasaporte': '41',
-    'Permiso especial de permanencia PEP': '47',
+    'PA': '41', // Pasaporte
+    'PE': '47', // Permiso especial de permanencia
     'Registro civil': '11',
     'Sin identificación del exterior o para uso definido por la DIAN': '43',
     'Tarjeta de extranjería': '21',
