@@ -1,7 +1,7 @@
 import { getSiigoData } from "./getSiigoData.js";
 
 
-export const getCustomerByIdentification = async (identification) => {
+const getCustomerByIdentification = async (identification) => {
 
     const customersUrl = 'https://api.siigo.com/v1/customers';
 
@@ -24,6 +24,21 @@ export const getCustomerByIdentification = async (identification) => {
         return null;
     }
 }
+
+export const checkCustomer = async (customerIdentificacion) => {
+	console.log("Verificacndo Cliente ID:", customerIdentificacion);
+
+	const customerExists = await getCustomerByIdentification(customerIdentificacion);
+
+	if (customerExists) {
+		console.log("Cliente existente");
+		return;
+	} else {
+		console.log("El cliente no existe");
+		return new Error("El cliente no existe");
+	}
+};
+
 
 // console.log(await getCustomerByIdentification(900266167) )
 
