@@ -56,8 +56,13 @@ async function postInvoice(customer, items) {
 // Llamamos a la función postInvoice para enviar la solicitud POST
 async function createInvoice(planilla) {
 
+    // console.log('planilla finalizada', planilla)
+
     try {
         const { customerId, formatedItems } = await getItemsFacturaSiigo(planilla);
+
+        console.log('cliente', customerId);
+        console.log('items', formatedItems);
 
         await checkCustomer(customerId);
 
