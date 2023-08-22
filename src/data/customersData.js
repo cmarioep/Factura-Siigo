@@ -827,7 +827,7 @@ const formattedData = [
             {
                 first_name: "MYRIAM",
                 last_name: "LOPEZ RAMIREZ",
-                email: "SOLUCIONESYTELDELVALLESAS@GMAIL.COM"
+                email: "solucionesyteldelvallesas@gmail.com"
             }
         ]
     }
