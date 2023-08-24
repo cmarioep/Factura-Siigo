@@ -1,4 +1,18 @@
-import { customersIdTypes } from './utils/paymentsTypes.js';
+const customersIdTypes = {
+    'CC': '13', // Cédula de ciudadanía
+    'NI': '31', // NIT
+    'CE': '22', // Cédula de extranjería
+    'Documento de identificación extranjero': '42',
+    'NIT de otro país': '50',
+    'No obligado a registrarse en el RUT PN': 'R-00-PN',
+    'NUIP': '91',
+    'PA': '41', // Pasaporte
+    'PE': '47', // Permiso especial de permanencia
+    'Registro civil': '11',
+    'Sin identificación del exterior o para uso definido por la DIAN': '43',
+    'Tarjeta de extranjería': '21',
+    'Tarjeta de identidad': '12'
+}
 
 
 const getIDType = (identificationType) => {
@@ -18,7 +32,6 @@ const setPersonType = (identificationType) => {
 
 const setCustomerName = (identificationType, name, lastName) => {
 
-
     const customerName = [];
 
     const personType = setPersonType(identificationType);
@@ -33,6 +46,7 @@ const setCustomerName = (identificationType, name, lastName) => {
         customerName.push(name);
         return customerName;
     }
+
 }
 
 
@@ -52,13 +66,13 @@ const formatCityCode = (cityCode) => {
 
 export const setCustomerData = (rawCustomerData) => {
 
-    const { NOMBRE, TIPO_IDENTIFICACION, IDENTIFICACION, DIRECCION, CODIGO_CIUDAD, CODIGO_DEPTO, NOMBRE_REPRESENTANTE, APELLIDO_REPRESENTANTE, EMAIL, TELEFONO } = rawCustomerData;
+    const { NOMBRE, TIPO_IDENTIFICACION, NIT, DIRECCION, CODIGO_CIUDAD, CODIGO_DEPTO, NOMBRE_REPRESENTANTE, APELLIDO_REPRESENTANTE, EMAIL, TELEFONO } = rawCustomerData;
 
 
     return {
         person_type: setPersonType(TIPO_IDENTIFICACION),
         id_type: getIDType(TIPO_IDENTIFICACION),
-        identification: `${IDENTIFICACION}`,
+        identification: `${NIT}`,
         name: setCustomerName(TIPO_IDENTIFICACION, NOMBRE, APELLIDO_REPRESENTANTE),
         address: {
             address: `${DIRECCION}`,
